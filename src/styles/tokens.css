@@ -2,6 +2,9 @@
   --color-background: #0f172a;
   --color-surface: #15203b;
   --color-surface-alt: #1e2a47;
+  --color-surface-raised: #22335a;
+  --color-surface-pressed: #101a33;
+  --color-surface-highlight: rgba(255, 255, 255, 0.12);
   --color-text: #e2e8f0;
   --color-accent: #38bdf8;
   --color-accent-rgb: 56 189 248;
@@ -19,7 +22,10 @@
   --radius-sm: 0.375rem;
   --radius-md: 0.75rem;
   --shadow-elevated: 0 18px 40px rgba(15, 23, 42, 0.45);
+  --shadow-floating: 0 18px 36px rgba(8, 12, 24, 0.55);
+  --shadow-pressed: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -4px 12px rgba(8, 12, 24, 0.55);
   --transition-fast: 120ms ease;
+  --transition-medium: 180ms ease;
   --transition-slow: 220ms ease;
   --breakpoint-tablet: 48rem;
   --breakpoint-desktop: 64rem;
