@@ -1,0 +1,48 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "Modern Minesweeper experience delivered with vanilla web technologies",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postbuild": "node tools/check-bundle-size.mjs",
+    "preview": "vite preview",
+    "test": "npm run test:unit",
+    "test:unit": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand",
+    "test:e2e": "playwright test",
+    "lint": "eslint \"src/**/*.{js,html}\" \"tests/**/*.js\"",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"{src,tests,specs}/**/*.{js,css,md,html}\"",
+    "format:check": "prettier --check \"{src,tests,specs}/**/*.{js,css,md,html}\"",
+  "test:perf": "node tools/run-lighthouse.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@babel/preset-env": "^7.28.3",
+    "@eslint/js": "^9.36.0",
+    "@jest/globals": "^30.2.0",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.55.1",
+    "axe-core": "^4.10.3",
+    "babel-jest": "^30.2.0",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-html": "^8.1.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-n": "^17.23.1",
+    "globals": "^16.4.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "prettier": "^3.6.2",
+    "vite": "^7.1.7"
+  }
+}

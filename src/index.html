@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Modern Minesweeper web app with responsive design, accessibility, and performant gameplay." />
+    <title>Modern Minesweeper</title>
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components/board.css" />
+  </head>
+  <body>
+    <main>
+      <div class="app-shell">
+        <section class="hud" aria-label="Game controls">
+          <div class="hud__group">
+            <label class="hud__label" for="difficulty">Difficulty</label>
+            <select class="hud__select" id="difficulty" data-mount="difficulty">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="expert">Expert</option>
+            </select>
+          </div>
+          <div class="hud__group">
+            <span class="hud__metric" aria-label="Timer" data-mount="timer">00:00</span>
+            <span class="hud__metric" aria-label="Mines remaining" data-mount="mine-counter">010</span>
+          </div>
+          <div class="hud__group">
+            <button class="hud__button" type="button" data-action="restart">New Game</button>
+            <button
+              class="hud__button"
+              type="button"
+              data-mount="touch-toggle"
+              aria-pressed="false"
+            >
+              Flag Mode
+            </button>
+          </div>
+          <div class="hud__group hud__group--status">
+            <div role="status" aria-live="polite" data-mount="status">Ready to play</div>
+          </div>
+        </section>
+        <section class="layout">
+          <div class="board" data-mount="grid"></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>

@@ -17,7 +17,7 @@
    → Tests: contract tests, integration tests
    → Core: models, services, CLI commands
    → Integration: DB, middleware, logging
-   → Polish: unit tests, performance, docs
+   → Polish: unit tests, accessibility validation, performance, docs
 4. Apply task rules:
    → Different files = mark [P] for parallel
    → Same file = sequential (no [P])
@@ -71,10 +71,11 @@
 
 ## Phase 3.5: Polish
 - [ ] T019 [P] Unit tests for validation in tests/unit/test_validation.py
-- [ ] T020 Performance tests (<200ms)
-- [ ] T021 [P] Update docs/api.md
-- [ ] T022 Remove duplication
-- [ ] T023 Run manual-testing.md
+- [ ] T020 Accessibility audit (axe or equivalent) for Minesweeper board interactions
+- [ ] T021 Performance tests (<100ms input latency, 60/30 FPS targets)
+- [ ] T022 [P] Update docs/api.md with responsiveness and accessibility notes
+- [ ] T023 Remove duplication
+- [ ] T024 Run manual-testing.md with constitution checklist
 
 ## Dependencies
 - Tests (T004-T007) before implementation (T008-T014)
@@ -125,3 +126,4 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - [ ] Parallel tasks truly independent
 - [ ] Each task specifies exact file path
 - [ ] No task modifies same file as another [P] task
+- [ ] Accessibility and performance coverage present per constitution

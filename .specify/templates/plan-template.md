@@ -47,7 +47,11 @@
 ## Constitution Check
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Confirm gameplay designs keep canonical Minesweeper rules intact, including seeded boards, neighbor counts, and first-click safety.
+- Document responsive layout behaviors for all target breakpoints and ensure UI changes preserve focus on board/timer indicators.
+- Capture accessibility mitigations (keyboard flow, ARIA roles, contrast tokens) and plan validation steps.
+- Show how code structure maintains modularity, automated test coverage, and minimal dependency footprint.
+- Define performance budgets (input latency, FPS, payload size) and how they will be measured.
 
 ## Project Structure
 
@@ -216,4 +220,4 @@ directories captured above]
 - [ ] Complexity deviations documented
 
 ---
-*Based on Constitution v2.1.1 - See `/memory/constitution.md`*
+*Based on Constitution v1.0.0 - See `/memory/constitution.md`*

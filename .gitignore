@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+.lighthouse/
+.lighthouseci/
+playwright-report/
+test-results/

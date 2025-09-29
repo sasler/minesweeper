@@ -36,6 +36,7 @@
 - **Mandatory sections**: Must be completed for every feature
 - **Optional sections**: Include only when relevant to the feature
 - When a section doesn't apply, remove it entirely (don't leave as "N/A")
+- For Minesweeper features, document expected responsiveness breakpoints, accessibility guarantees, and performance budgets aligned with the constitution.
 
 ### For AI Generation
 When creating this spec from a user prompt:
@@ -64,6 +65,8 @@ When creating this spec from a user prompt:
 ### Edge Cases
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
+- How is accessibility validated (keyboard, screen reader, contrast)?
+- What performance or responsiveness limits apply?
 
 ## Requirements *(mandatory)*
 
@@ -73,6 +76,7 @@ When creating this spec from a user prompt:
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-006**: Experience MUST maintain constitution-aligned accessibility and performance targets [cite metrics or tests].
 
 *Example of marking unclear requirements:*
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
@@ -92,6 +96,8 @@ When creating this spec from a user prompt:
 - [ ] Focused on user value and business needs
 - [ ] Written for non-technical stakeholders
 - [ ] All mandatory sections completed
+- [ ] Accessibility, responsiveness, and performance expectations captured
+- [ ] Constitution principles referenced where applicable
 
 ### Requirement Completeness
 - [ ] No [NEEDS CLARIFICATION] markers remain

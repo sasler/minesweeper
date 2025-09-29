@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2025-09-29T16:05:26",
+  "command": "npm run test:perf",
+  "url": "http://localhost:49264/index.html",
+  "scores": {
+    "performance": 0.96,
+    "accessibility": 1.0
+  },
+  "metrics": {
+    "firstContentfulPaint": "2.1 s",
+    "speedIndex": "2.9 s",
+    "totalBlockingTime": "90 ms",
+    "largestContentfulPaint": "2.2 s",
+    "cumulativeLayoutShift": "0.002"
+  }
+}
