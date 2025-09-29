@@ -4,6 +4,8 @@
   --color-surface-alt: #1e2a47;
   --color-text: #e2e8f0;
   --color-accent: #38bdf8;
+  --color-accent-rgb: 56 189 248;
+  --color-accent-subtle: rgba(56, 189, 248, 0.1);
   --color-danger: #f87171;
   --color-warning: #facc15;
   --color-success: #4ade80;

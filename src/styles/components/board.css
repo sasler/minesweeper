@@ -20,14 +20,18 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: var(--color-surface);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-alt, var(--color-surface)) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.4);
   border-radius: calc(var(--radius-sm) * 0.6);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3);
   font-weight: 700;
   font-family: var(--font-family-mono);
   font-size: clamp(1rem, 3.1vw, 1.5rem);
   color: var(--color-text);
   cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
 .tile:focus-visible {
@@ -35,10 +39,22 @@
   outline-offset: 2px;
 }
 
+.tile:hover:not(.tile--revealed) {
+  background: linear-gradient(135deg, var(--color-surface-alt, var(--color-surface)) 0%, var(--color-accent-subtle) 100%);
+  border-color: rgba(148, 163, 184, 0.6);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 .tile--revealed {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: rgba(148, 163, 184, 0.35);
+  background: linear-gradient(135deg, rgba(30, 42, 71, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border-color: rgba(148, 163, 184, 0.6);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(148, 163, 184, 0.1);
   cursor: default;
+  transform: translateY(1px);
 }
 
 .tile--mine {
