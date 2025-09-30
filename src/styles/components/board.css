@@ -5,11 +5,26 @@
   gap: var(--board-gap);
   justify-content: center;
   padding: var(--space-sm);
-  background: var(--color-surface-alt);
+  background: linear-gradient(155deg, rgba(30, 41, 82, 0.65), rgba(10, 15, 27, 0.92));
+  border: 1px solid var(--color-border-ambient);
   border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-floating);
+  position: relative;
+  overflow: hidden;
   contain: layout paint;
   content-visibility: auto;
   contain-intrinsic-size: 20rem;
+}
+
+.board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 68%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.85;
 }
 
 .board__row {
@@ -17,21 +32,38 @@
 }
 
 .tile {
+  --tile-bg: linear-gradient(150deg, var(--color-surface-raised) 0%, var(--color-surface) 100%);
+  --tile-border-color: var(--color-border-medium);
+  --tile-shadow: var(--shadow-tile), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --tile-text-color: var(--color-text);
+  --tile-overlay-color: linear-gradient(180deg, var(--color-surface-highlight), rgba(15, 23, 42, 0));
+  --tile-overlay-opacity: 0.25;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-alt, var(--color-surface)) 100%);
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  position: relative;
+  background: var(--tile-bg);
+  border: 1px solid var(--tile-border-color);
   border-radius: calc(var(--radius-sm) * 0.6);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--tile-shadow);
   font-weight: 700;
   font-family: var(--font-family-mono);
   font-size: clamp(1rem, 3.1vw, 1.5rem);
-  color: var(--color-text);
+  color: var(--tile-text-color);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-medium), background var(--transition-medium), border-color var(--transition-fast), color var(--transition-fast), filter var(--transition-fast);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--tile-overlay-color);
+  opacity: var(--tile-overlay-opacity);
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
 }
 
 .tile:focus-visible {
@@ -39,46 +71,88 @@
   outline-offset: 2px;
 }
 
-.tile:hover:not(.tile--revealed) {
-  background: linear-gradient(135deg, var(--color-surface-alt, var(--color-surface)) 0%, var(--color-accent-subtle) 100%);
-  border-color: rgba(148, 163, 184, 0.6);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 2px 6px rgba(0, 0, 0, 0.2);
+.tile--hidden {
+  --tile-bg: linear-gradient(155deg, rgba(33, 51, 90, 0.98), rgba(9, 14, 26, 0.9));
+  --tile-border-color: var(--color-border-strong);
+  --tile-shadow: var(--shadow-tile-hidden), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  --tile-overlay-opacity: 0.55;
+}
+
+.tile--hidden:hover {
+  transform: translateY(-2px);
+  --tile-overlay-opacity: 0.75;
+  box-shadow: var(--shadow-tile-hover), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  border-color: var(--color-border-emphasis);
+}
+
+.tile--hidden:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-pressed);
+  --tile-overlay-opacity: 0.4;
 }
 
 .tile--revealed {
-  background: linear-gradient(135deg, rgba(30, 42, 71, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
-  border-color: rgba(148, 163, 184, 0.6);
-  box-shadow: 
-    inset 0 1px 3px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(148, 163, 184, 0.1);
+  --tile-bg: linear-gradient(165deg, rgba(132, 204, 255, 0.45), rgba(28, 46, 86, 0.72));
+  --tile-border-color: var(--color-border-faint);
+  --tile-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.18), inset 0 -8px 16px rgba(12, 20, 40, 0.42);
+  --tile-overlay-color: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(56, 189, 248, 0.18));
+  --tile-overlay-opacity: 0.34;
+  --tile-text-color: rgba(13, 23, 44, 0.88);
   cursor: default;
-  transform: translateY(1px);
+  transform: none;
+  box-shadow: var(--tile-shadow), 0 8px 22px rgba(56, 189, 248, 0.22);
+}
+
+.tile--revealed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 35% 30%, rgba(148, 227, 255, 0.45), transparent 70%);
+  opacity: 0.5;
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+
+.tile--revealed-empty {
+  --tile-bg: linear-gradient(160deg, rgba(191, 239, 255, 0.65), rgba(43, 66, 118, 0.55));
+  --tile-border-color: rgba(191, 239, 255, 0.4);
+  --tile-overlay-opacity: 0.38;
+  --tile-text-color: rgba(12, 22, 42, 0.78);
 }
 
 .tile--mine {
-  color: var(--color-danger);
+  --tile-overlay-color: radial-gradient(circle, rgba(248, 113, 113, 0.65) 0%, transparent 70%);
+  --tile-overlay-opacity: 1;
+  color: #fca5a5;
+  text-shadow: 0 0 12px rgba(248, 113, 113, 0.6);
 }
 
 .tile--flagged {
-  color: var(--color-warning);
+  --tile-overlay-color: linear-gradient(150deg, rgba(250, 204, 21, 0.32), rgba(56, 189, 248, 0.1));
+  --tile-overlay-opacity: 0.85;
+  color: #fef08a;
+  text-shadow: 0 4px 12px rgba(250, 204, 21, 0.35);
 }
 
 .tile--questioned {
+  --tile-overlay-color: linear-gradient(150deg, rgba(56, 189, 248, 0.3), rgba(148, 163, 184, 0.18));
+  --tile-overlay-opacity: 0.7;
   color: var(--color-accent);
 }
 
 .tile--hint-1 {
-  color: #38bdf8;
+  color: #021835;
+  text-shadow: none;
 }
 
 .tile--hint-2 {
-  color: #34d399;
+  color: #06301f;
+  text-shadow: none;
 }
 
 .tile--hint-3 {
-  color: #f97316;
+  color: #5a2200;
+  text-shadow: none;
 }
 
 .tile--hint-4,
@@ -86,7 +160,8 @@
 .tile--hint-6,
 .tile--hint-7,
 .tile--hint-8 {
-  color: #f87171;
+  color: #420606;
+  text-shadow: none;
 }
 
 @media (max-width: 40rem) {

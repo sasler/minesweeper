@@ -15,11 +15,16 @@ function buildTileClassList(tile) {
   const classes = ['tile'];
   if (tile.isRevealed) {
     classes.push('tile--revealed');
+    if (!tile.isMine && tile.adjacentMines === 0) {
+      classes.push('tile--revealed-empty');
+    }
     if (tile.isMine) {
       classes.push('tile--mine');
     } else if (tile.adjacentMines > 0) {
       classes.push(`tile--hint-${tile.adjacentMines}`);
     }
+  } else {
+    classes.push('tile--hidden');
   }
   if (tile.isFlagged) {
     classes.push('tile--flagged');
